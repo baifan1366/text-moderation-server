@@ -21,7 +21,7 @@ DEVICE = 0 if os.getenv("USE_CUDA", "false") == "true" else -1
 print(f"Loading model: {MODEL_NAME} on {'cuda' if DEVICE == 0 else 'cpu'}")
 
 # Load model with optimizations
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=False)
 model = AutoModelForSequenceClassification.from_pretrained(
     MODEL_NAME, 
     torchscript=True,  # Optimize with TorchScript
